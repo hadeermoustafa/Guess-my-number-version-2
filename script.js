@@ -15,9 +15,11 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".number").textContent = guess;
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".number").style.width = "30rem";
-
-    document.querySelector(".highscore").value = score;
-    document.querySelector(".highscore").textContent = score;
+    if (score > highscore) {
+      highscore = score;
+      // document.querySelector(".highscore").value = score;
+      document.querySelector(".highscore").textContent = highscore;
+    }
   } else if (guess > random) {
     if (score > 1) {
       document.querySelector(".message").textContent = "📈 Too high!";
@@ -48,4 +50,6 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".message").textContent = "Start guessing...";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".guess").value = "";
+  document.querySelector("body").style.backgroundColor = "#222";
+  document.querySelector(".number").style.width = "#15rem";
 });
