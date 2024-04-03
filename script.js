@@ -7,6 +7,9 @@ let highscore = 0;
 const clickAudio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 const winAudio = new Audio("https://www.fesliyanstudios.com/play-mp3/2651");
 const loseAudio = new Audio("https://www.fesliyanstudios.com/play-mp3/5637");
+const winAuioSecond = new Audio(
+  "https://www.fesliyanstudios.com/play-mp3/4251"
+);
 
 function displayMessage(message) {
   document.querySelector(".message").textContent = message;
@@ -19,6 +22,7 @@ document.querySelector(".check").addEventListener("click", function () {
     displayMessage("⛔ No Number!");
   } else if (guess === random) {
     winAudio.play();
+    winAuioSecond.play();
     displayMessage("🎉 Correct!");
     document.querySelector(".number").textContent = guess;
     document.querySelector("body").style.backgroundColor = "green";
@@ -26,13 +30,11 @@ document.querySelector(".check").addEventListener("click", function () {
 
     if (score > highscore) {
       highscore = score;
-      // document.querySelector(".highscore").value = score;
       document.querySelector(".highscore").textContent = highscore;
     }
   } else if (guess !== random) {
     if (score > 1) {
-      document.querySelector(".message").textContent =
-        guess > random ? "📈 Too high!" : "📉 Too low!";
+      displayMessage(guess > random ? "📈 Too high!" : "📉 Too low!");
       score--;
       document.querySelector(".score").textContent = score;
     } else {
